@@ -1,11 +1,16 @@
 import React from "react";
-import Box2 from "./Box2";
+import Box from "./Box"
 
 const App = () => {
     return (
-        <div className="box1">
-            <Box2 className="box2"/>
-        </div>
+        <Box className="box1">
+            <Box className="box2">
+                <Box className="box3">
+                    <Box className="box4" />
+                    <Box className="box4" />
+                </Box>
+            </Box>
+        </Box>
     )
 }
 
