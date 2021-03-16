@@ -30,26 +30,24 @@ import React from "react"
 //********************************************************************
 //********************************************************************
 
-//increament
-class Counter extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = { value: 0 };
-      }
-      handleCounter() {
-        this.setState({ value: this.state.value + 1 });
-      }
-      render(){
-          return(
-              <div>
-                <button
-                    onClick={this.handleCounter.bind(this)}
-                >counter</button> 
-                <span> {this.state.value}</span>
-            </div>
-          )
-      }
-}
+// //increament
+// class Counter extends React.Component{
+//     constructor(props) {
+//         super(props);
+//         this.state = { value: 0 };
+//       }
+//       handleCounter() {
+//         this.setState({ value: this.state.value + 1 });
+//       }
+//       render(){
+//           return(
+//               <div>
+//                 <button
+//                     onClick={this.handleCounter.bind(this)}
+//                 >counter</button> 
+//                 <span> {this.state.value}</span>
+//             </div>
+//           )
+//       }
+// }
 
-
-export default Counter;
