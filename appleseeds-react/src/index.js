@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Appp   from "./App"
+import App   from "./App"
 
 const Index = () => {
-  return <Appp />
+  return <App />
 };
 
 ReactDOM.render(<Index />, document.querySelector('#root'));
