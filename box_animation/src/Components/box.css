@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.box{
+    margin: 5px 0;
+    background: darkviolet;
+    position: relative;
+    left: -200px;
+    animation: slide linear .5s forwards;
+}
+@keyframes slide {
+    100% {left:0px;}
+  }
