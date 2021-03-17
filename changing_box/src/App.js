@@ -17,8 +17,8 @@ export default class App extends React.Component{
            }
        },500)
     }
+    
     render(){
-        console.log(this)
         return (
             <div className="box" style={{background: this.state.currentColor(), borderRadius:this.state.borderRadius()}}></div>
         )
