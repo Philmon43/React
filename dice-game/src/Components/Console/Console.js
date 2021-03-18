@@ -9,8 +9,8 @@ const Console = () => {
           <Button type="🔄 NEW GAME"/>
           <Dice />
           <Dice />
-          <Button type="🎲  ROLL DICE"/>
-          <Button type="📥  HOLD"/>
+          <Button type="🎲 ROLL DICE"/>
+          <Button type="📥 HOLD"/>
           <Input />
        </div>
     )
