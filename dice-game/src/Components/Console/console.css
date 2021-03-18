@@ -1,0 +1,16 @@
+.console{
+    position: absolute;
+    height: 70vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+@media only screen and (max-height: 400px) {
+    .console{
+        height: 100vh;
+        justify-content: space-between;
+    }
+}

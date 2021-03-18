@@ -1,0 +1,33 @@
+.row-of-icons {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */      
+  }
+.cutome_btn{
+    width: 200px;
+    background: wheat;
+    padding: 5px;
+    text-align: center;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.cutome_btn:active{
+    opacity: .7;
+}
+
+@media only screen and (max-height: 400px) {
+    .cutome_btn{
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .cutome_btn{
+        width: 150px;
+    }
+}
+
+

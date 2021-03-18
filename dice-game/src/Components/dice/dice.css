@@ -1,0 +1,12 @@
+.dice_container{
+    width: 150px;
+    height: 150px;
+    background: red;
+}
+
+@media only screen and (max-height: 400px) {
+    .dice_container{
+       width: 100px;
+       height: 100px;
+    }
+}
