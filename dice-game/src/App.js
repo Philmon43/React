@@ -12,7 +12,7 @@ class App extends React.Component{
         diceValue: [0, 0],
         style:  [this.defaultStyle+"1", this.defaultStyle+"2"],
         title: ["Player 1", "Player 2"],
-        pointToAchive: 10,
+        pointToAchive: 100,
         currentScore: 0,
         activePlayer: 0,
     }
@@ -86,11 +86,11 @@ class App extends React.Component{
         let newScore = this.state.scores;
         newScore[this.state.activePlayer] += runningScore
         this.setState({currentScore: 0, scores: newScore});
+        this.setState({diceValue: [0, 0]})
         if(newScore[this.state.activePlayer] >= this.state.pointToAchive){
             let winner = this.state
                 winner.style[this.state.activePlayer] = this.defaultStyle+this.state.activePlayer+" winner" // bug 
                 winner.title[this.state.activePlayer] = "W I N N E R" // bug 
-                this.setState({diceValue: [0, 0]})
                 this.disableBtn()
         }else{
             this.setActivePlayer()   
@@ -115,7 +115,8 @@ class App extends React.Component{
             }, 2000)
         }
     }
-    
+
+    setInputvalue = (value) => this.setState({pointToAchive: value})
 
     render(){
         return(
@@ -133,6 +134,7 @@ class App extends React.Component{
                  onHoldScoreClick={this.holdScore}
                  setDiceOne={this.state.diceValue[0]}
                  setDiceTwo={this.state.diceValue[1]}
+                 handleInputValue={(value) => this.setInputvalue(value)}
                  />
 
                 <PlayerCard

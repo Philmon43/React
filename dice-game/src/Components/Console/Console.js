@@ -9,6 +9,7 @@ const Console = props => {
    const onHoldScore = () => props.onHoldScoreClick();
    const onDcieOne = () => props.setDiceOne;
    const onDcieTwo = () => props.setDiceTwo;
+   const onInputValue = (value) => props.handleInputValue(value)
     return (
        <div className="console">
           <Button
@@ -29,7 +30,7 @@ const Console = props => {
            type="📥 &nbsp; HOLD"
            handleClickEvent={onHoldScore}
            />
-          <Input />
+          <Input sendInput={(value) =>  onInputValue(value)}/>
        </div>
     )
 }
