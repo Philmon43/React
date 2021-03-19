@@ -3,14 +3,26 @@ import Button from "../button/Button";
 import Dice from "../dice/Dice";
 import Input from "../Input/Input";
 
-const Console = () => {
+const Console = (props) => {
+   const onNewGame = () => props.onNewButtonClick();
+   const onRollDice = () => props.onRollDiceClick();
+   const onHoldScore = () => props.onHoldScoreClick();
     return (
        <div className="console">
-          <Button type="🔄 NEW GAME"/>
+          <Button
+           type="🔄 NEW GAME"
+           handleClickEvent={onNewGame}
+           />
           <Dice />
           <Dice />
-          <Button type="🎲 ROLL DICE"/>
-          <Button type="📥 HOLD"/>
+          <Button
+           type="🎲 ROLL DICE"
+           handleClickEvent={onRollDice}
+           />
+          <Button
+           type="📥 HOLD"
+           handleClickEvent={onHoldScore}
+           />
           <Input />
        </div>
     )
