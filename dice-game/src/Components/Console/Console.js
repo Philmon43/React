@@ -5,16 +5,22 @@ import Input from "../Input/Input";
 
 const Console = props => {
    const onNewGame = () => props.onNewButtonClick();
-   const onRollDice = () => props.onRollDiceClick();
+   const onRollDice = () => props.onRollButtonClick();
    const onHoldScore = () => props.onHoldScoreClick();
+   const onDcieOne = () => props.setDiceOne();
+   const onDcieTwo = () => props.setDiceTwo();
     return (
        <div className="console">
           <Button
            type="🔄 NEW GAME"
            handleClickEvent={onNewGame}
            />
-          <Dice />
-          <Dice />
+          <Dice
+            diceNum={onDcieOne}
+          />
+          <Dice 
+            diceNum={onDcieTwo}
+          />
           <Button
            type="🎲 ROLL DICE"
            handleClickEvent={onRollDice}

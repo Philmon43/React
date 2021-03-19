@@ -36,6 +36,8 @@ class App extends React.Component{
     newGame = () => console.log("new game")
     rollDice = () => console.log("roll the dice")
     holdScore = () => this.switchPlayer()
+    getDiceOnevalue= () => 1
+    getDiceTwovalue= () => 5
     render(){
         return(
             <Container>
@@ -47,8 +49,10 @@ class App extends React.Component{
 
                 <Console
                  onNewButtonClick={this.newGame}
-                 onRollDiceClick={this.rollDice}
+                 onRollButtonClick={this.rollDice}
                  onHoldScoreClick={this.holdScore}
+                 setDiceOne={this.getDiceOnevalue}
+                 setDiceTwo={this.getDiceTwovalue}
                  />
 
                 <PlayerCard

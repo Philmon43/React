@@ -1,11 +1,23 @@
 .dice_container{
-    width: 150px;
-    height: 150px;
+    min-width: 150px;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dice_png{
+    width: 120px;
+    border: 1px solid rgba(210, 105, 30, .5);
 }
 
 @media only screen and (max-height: 400px) {
     .dice_container{
-       width: 100px;
-       height: 100px;
+       min-width: 100px;
+       min-height: 100px;
     }
+    .dice_png{
+        width: 90px;
+        height: 90px;
+     }
 }
