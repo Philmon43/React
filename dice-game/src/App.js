@@ -5,28 +5,38 @@ import Console from "./Components/Console/Console";
 import RandomNumber from "./Hooks/RandomNumber"
 
 class App extends React.Component{
+    defaultStyle = "play_card player_";
+
     state = {
         scores: [0, 0],
         currentScore: 0,
         activePlayer: 0,
         diceValue: [0, 0],
-        playerOne: "play_card player_1",
-        playerTwo: "play_card player_2",
+        style:  [this.defaultStyle+"1", this.defaultStyle+"2"],
+        title: ["Player 1", "Player 2"],
+        pointToAchive: 10 
     }
 
+
     //swich player
-    switchPlayer = () => {
+    setActivePlayer = () => {
+        // eslint-disable-next-line default-case
         switch(this.state.activePlayer){
             case 0:
-                this.setState({playerTwo: "play_card player_2", playerOne: "play_card player_1 inactive",activePlayer: 1});
+                this.setState({
+                    style: [this.defaultStyle+"1 inactive", this.defaultStyle+"2"],
+                    activePlayer: 1
+                })
                 break
             case 1:
-                this.setState({playerOne: "play_card player_1", playerTwo: "play_card player_2 inactive",activePlayer: 0});
-                break
-            default:
+                this.setState({
+                    style: [this.defaultStyle+"1", this.defaultStyle+"2 inactive"],
+                    activePlayer: 0
+                })
                 break
         }
     }
+
 
     //on new Game button click
     newGame = () => console.log("new game")
@@ -47,32 +57,40 @@ class App extends React.Component{
         let newScore = this.state.scores;
         newScore[this.state.activePlayer] += runningScore
         this.setState({currentScore: 0, scores: newScore});
-        this.switchPlayer()
+        if(newScore[this.state.activePlayer] >= this.state.pointToAchive){
+            let winner = this.state
+                winner.style[this.state.activePlayer] = this.defaultStyle+this.state.activePlayer+" winner" // bug 
+                winner.title[this.state.activePlayer] = "Winner" // bug 
+                this.setState({diceValue: [0, 0]})
+        }else{
+            this.setActivePlayer()   
+        }     
     }
-
     
     componentDidMount(){
-        //set defaul player
+        let active = 0
         this.setState({
-            playerOne: "play_card player_1 inactive",
-            playerTwo: "play_card player_2",
-            activePlayer: 0
+            style: [this.defaultStyle+active, this.defaultStyle+"2 inactive"],
+           activePlayer: active
         });
     }
     
     componentDidUpdate(){
-
+        if(this.state.diceValue[0] === 6 &&this.state.diceValue[1] === 6){
+            setTimeout(() => {
+                this.setState({diceValue: [0, 0], currentScore: 0})
+                this.setActivePlayer()
+            }, 2000)
+        }
     }
     
-    getDiceOnevalue= () => this.state.diceValue[0];
-    getDiceTwovalue= () => this.state.diceValue[1];
 
     render(){
         return(
             <Container>
                 <PlayerCard 
-                    player={this.state.playerOne}
-                    player_n= "Player 1"
+                    player={this.state.style[0]}
+                    player_n= {this.state.title[0]}
                     score={this.state.scores[0]}
                     currentScore = {this.state.activePlayer===0?this.state.currentScore:0}
                 />
@@ -81,13 +99,13 @@ class App extends React.Component{
                  onNewButtonClick={this.newGame}
                  onRollButtonClick={this.rollDice}
                  onHoldScoreClick={this.holdScore}
-                 setDiceOne={this.getDiceOnevalue}
-                 setDiceTwo={this.getDiceTwovalue}
+                 setDiceOne={this.state.diceValue[0]}
+                 setDiceTwo={this.state.diceValue[1]}
                  />
 
                 <PlayerCard
-                    player={this.state.playerTwo}
-                    player_n = "Player 2"
+                    player={this.state.style[1]}
+                    player_n = {this.state.title[1]}
                     score={this.state.scores[1]}
                     currentScore = {this.state.activePlayer===1?this.state.currentScore:0}
                 />

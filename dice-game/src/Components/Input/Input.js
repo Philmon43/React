@@ -1,8 +1,13 @@
+import React from "react"
 import  "./input.css"
-const Input = () => {
-    return (
-        <input className="input" type="text" placeholder="100"/>
-    )
+class Input extends React.Component{
+    state = {number: 100}
+    
+    render(){
+        return (
+            <input className="input" value={this.state.number} onChange={e => this.setState({number: e.target.value})} type="text" />
+        )
+    }
 }
 
 export default Input

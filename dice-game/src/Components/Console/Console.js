@@ -7,8 +7,8 @@ const Console = props => {
    const onNewGame = () => props.onNewButtonClick();
    const onRollDice = () => props.onRollButtonClick();
    const onHoldScore = () => props.onHoldScoreClick();
-   const onDcieOne = () => props.setDiceOne();
-   const onDcieTwo = () => props.setDiceTwo();
+   const onDcieOne = () => props.setDiceOne;
+   const onDcieTwo = () => props.setDiceTwo;
     return (
        <div className="console">
           <Button
@@ -29,7 +29,7 @@ const Console = props => {
            type="📥 &nbsp; HOLD"
            handleClickEvent={onHoldScore}
            />
-          <Input />
+          <Input onInputChange={props.input}/>
        </div>
     )
 }
