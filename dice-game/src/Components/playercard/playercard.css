@@ -29,9 +29,11 @@
 }
 
 .player_box_upper {
-    height: 20%;
+    height: 25%;
 }
-
+.player_number{
+    font-weight:300;
+}
 .player_global_score {
     font-size: 70px;
     font-weight: lighter;
@@ -51,7 +53,7 @@
 }
 
 .inactive {
-    background: rgba(248, 248, 255, 0.8);
+    background: rgba(248, 248, 255, .9);
 }
 
 @media only screen and (max-width: 812px) {

@@ -12,7 +12,7 @@ const Console = props => {
     return (
        <div className="console">
           <Button
-           type="🔄 NEW GAME"
+           type="🔄 &nbsp; NEW GAME"
            handleClickEvent={onNewGame}
            />
           <Dice
@@ -22,11 +22,11 @@ const Console = props => {
             diceNum={onDcieTwo}
           />
           <Button
-           type="🎲 ROLL DICE"
+           type="🎲 &nbsp; ROLL DICE"
            handleClickEvent={onRollDice}
            />
           <Button
-           type="📥 HOLD"
+           type="📥 &nbsp; HOLD"
            handleClickEvent={onHoldScore}
            />
           <Input />
