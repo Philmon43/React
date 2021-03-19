@@ -3,7 +3,7 @@ import Button from "../button/Button";
 import Dice from "../dice/Dice";
 import Input from "../Input/Input";
 
-const Console = (props) => {
+const Console = props => {
    const onNewGame = () => props.onNewButtonClick();
    const onRollDice = () => props.onRollDiceClick();
    const onHoldScore = () => props.onHoldScoreClick();

@@ -1,7 +1,7 @@
 import "./playercard.css"
 
 // play_card player_1 active
-const PlayerCard = ({player, player_n}) =>{
+const PlayerCard = ({player, player_n, score}) =>{
     return (
         <div className={player}>
             <div className="player_box_upper">
@@ -10,7 +10,7 @@ const PlayerCard = ({player, player_n}) =>{
             </div>
             <div className="player_box_lower">
                 <p>Current Score</p>
-                <p className="current_score">0</p>
+                <p className="current_score">{score}</p>
             </div>
         </div>
     )

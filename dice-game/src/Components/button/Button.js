@@ -14,7 +14,7 @@ Button.defaultProps = {
     handleClickEvent: () => {
         console.log("Whats's up?");
     },
-  }
+}
 
 
 export default Button

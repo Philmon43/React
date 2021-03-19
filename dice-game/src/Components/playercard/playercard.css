@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 2px 2px 7px rgba(51, 51, 51, 0.5);
+    box-shadow: 1px 1px 5px rgba(51, 51, 51, 0.5);
 }
 
 .player_1 {
@@ -33,7 +33,7 @@
 }
 
 .player_global_score {
-    font-size: 50px;
+    font-size: 70px;
     font-weight: lighter;
     color: lightcoral;
 }
@@ -50,7 +50,7 @@
     font-size: 25px;
 }
 
-.active {
+.inactive {
     background: rgba(248, 248, 255, 0.8);
 }
 
