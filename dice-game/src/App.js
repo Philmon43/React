@@ -9,12 +9,12 @@ class App extends React.Component{
 
     state = {
         scores: [0, 0],
-        currentScore: 0,
-        activePlayer: 0,
         diceValue: [0, 0],
         style:  [this.defaultStyle+"1", this.defaultStyle+"2"],
         title: ["Player 1", "Player 2"],
-        pointToAchive: 10 
+        pointToAchive: 10,
+        currentScore: 0,
+        activePlayer: 0,
     }
 
 
@@ -38,8 +38,37 @@ class App extends React.Component{
     }
 
 
+    //disableButtons 
+    disableBtn = () => {
+        document.querySelectorAll(".cutome_btn").forEach((el, i) => {
+            if(i > 0){
+                el.classList.add("disable")
+            }
+        });
+    }
+
+    //enable buttons
+    enableBtn = () => {
+        document.querySelectorAll(".cutome_btn").forEach((el, i) => {
+            if(i > 0){
+                el.classList.remove("disable")
+            }
+        });
+    }
+
     //on new Game button click
-    newGame = () => console.log("new game")
+    newGame = () => {
+        this.setState({
+            scores: [0, 0],
+            currentScore: 0,
+            activePlayer: 0,
+            diceValue: [0, 0],
+            style:  [this.defaultStyle+"1", this.defaultStyle+"2 inactive"],
+            title: ["Player 1", "Player 2"],
+            pointToAchive: 10 
+        })
+        this.enableBtn()
+    }
 
     //on roll dice button click
     rollDice = () => {
@@ -60,8 +89,9 @@ class App extends React.Component{
         if(newScore[this.state.activePlayer] >= this.state.pointToAchive){
             let winner = this.state
                 winner.style[this.state.activePlayer] = this.defaultStyle+this.state.activePlayer+" winner" // bug 
-                winner.title[this.state.activePlayer] = "Winner" // bug 
+                winner.title[this.state.activePlayer] = "W I N N E R" // bug 
                 this.setState({diceValue: [0, 0]})
+                this.disableBtn()
         }else{
             this.setActivePlayer()   
         }     
@@ -77,9 +107,11 @@ class App extends React.Component{
     
     componentDidUpdate(){
         if(this.state.diceValue[0] === 6 &&this.state.diceValue[1] === 6){
+            this.disableBtn()
             setTimeout(() => {
                 this.setState({diceValue: [0, 0], currentScore: 0})
                 this.setActivePlayer()
+                this.enableBtn()
             }, 2000)
         }
     }

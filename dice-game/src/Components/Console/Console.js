@@ -29,7 +29,7 @@ const Console = props => {
            type="📥 &nbsp; HOLD"
            handleClickEvent={onHoldScore}
            />
-          <Input onInputChange={props.input}/>
+          <Input />
        </div>
     )
 }
