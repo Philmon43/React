@@ -4,7 +4,10 @@ class Input extends React.Component{
     state = {number: 100}
     handleSubmit = (e) =>{
         e.preventDefault()
-        this.props.sendInput(this.state.number)
+        this.props.sendInput(parseInt(this.state.number))
+    }
+    componentDidMount(){
+        this.setState({number: parseInt(this.props.placeHolder)})
     }
     render(){
         return (
@@ -14,7 +17,6 @@ class Input extends React.Component{
                     value={this.state.number} 
                     onChange={e => this.setState({number: e.target.value})} 
                     type="text"
-                    autoFocus="none"
                     />
             </form>
         )

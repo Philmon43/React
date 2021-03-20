@@ -30,7 +30,7 @@ const Console = props => {
            type="📥 &nbsp; HOLD"
            handleClickEvent={onHoldScore}
            />
-          <Input sendInput={(value) =>  onInputValue(value)}/>
+          <Input sendInput={(value) =>  onInputValue(value)} placeHolder={props.placeHolder}/>
        </div>
     )
 }

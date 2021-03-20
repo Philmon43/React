@@ -5,72 +5,63 @@ import Console from "./Components/Console/Console";
 import RandomNumber from "./Hooks/RandomNumber"
 
 class App extends React.Component{
-    defaultStyle = "play_card player_";
-
-    state = {
+    state = JSON.parse(localStorage.getItem("state")) || {
         scores: [0, 0],
         diceValue: [0, 0],
-        style:  [this.defaultStyle+"1", this.defaultStyle+"2"],
         title: ["Player 1", "Player 2"],
         pointToAchive: 100,
         currentScore: 0,
         activePlayer: 0,
     }
 
-
-    //swich player
-    setActivePlayer = () => {
-        // eslint-disable-next-line default-case
-        switch(this.state.activePlayer){
-            case 0:
-                this.setState({
-                    style: [this.defaultStyle+"1 inactive", this.defaultStyle+"2"],
-                    activePlayer: 1
-                })
-                break
-            case 1:
-                this.setState({
-                    style: [this.defaultStyle+"1", this.defaultStyle+"2 inactive"],
-                    activePlayer: 0
-                })
-                break
+    elemntSelectros = () => {
+        return{
+            button: document.querySelectorAll(".cutome_btn"),
+            playerCard: document.querySelectorAll(".play_card")
         }
     }
 
+    syncLocalSorage = () => localStorage.setItem("state", JSON.stringify(this.state))
 
-    //disableButtons 
+    setActivePlayer = async () => {
+        let viVe = this.state.activePlayer === 1? 0: 1;
+        await this.elemntSelectros().playerCard[viVe].classList.add("inactive")
+        await this.elemntSelectros().playerCard[this.state.activePlayer].classList.remove("inactive")
+    }
+    
+    swichPlayer =  () => this.setState({activePlayer: this.state.activePlayer===0?1:0})
+
     disableBtn = () => {
-        document.querySelectorAll(".cutome_btn").forEach((el, i) => {
+        this.elemntSelectros().button.forEach((el, i) => {
             if(i > 0){
                 el.classList.add("disable")
             }
         });
     }
 
-    //enable buttons
     enableBtn = () => {
-        document.querySelectorAll(".cutome_btn").forEach((el, i) => {
+        this.elemntSelectros().button.forEach((el, i) => {
             if(i > 0){
                 el.classList.remove("disable")
             }
         });
     }
 
-    //on new Game button click
     newGame = () => {
         this.setState({
             scores: [0, 0],
             currentScore: 0,
             activePlayer: 0,
             diceValue: [0, 0],
-            style:  [this.defaultStyle+"1", this.defaultStyle+"2 inactive"],
             title: ["Player 1", "Player 2"],
-            pointToAchive: 10 
+            pointToAchive: this.state.pointToAchive
         })
+        this.elemntSelectros().playerCard.forEach((el) => el.classList.remove("winner"));
+        this.elemntSelectros().playerCard[0].classList.remove("inactive")
+        this.elemntSelectros().playerCard[1].classList.add("inactive")
         this.enableBtn()
     }
 
-    //on roll dice button click
     rollDice = () => {
         let radomDiceOne = RandomNumber();
         let radomDiceTwo = RandomNumber();
@@ -80,32 +71,34 @@ class App extends React.Component{
         })
     }
 
-    //on hold dice button click
-    holdScore = () => {
-        let runningScore = this.state.currentScore;
-        let newScore = this.state.scores;
-        newScore[this.state.activePlayer] += runningScore
-        this.setState({currentScore: 0, scores: newScore});
-        this.setState({diceValue: [0, 0]})
-        if(newScore[this.state.activePlayer] >= this.state.pointToAchive){
-            let winner = this.state
-                winner.style[this.state.activePlayer] = this.defaultStyle+this.state.activePlayer+" winner" // bug 
-                winner.title[this.state.activePlayer] = "W I N N E R" // bug 
-                this.disableBtn()
-        }else{
-            this.setActivePlayer()   
-        }     
+    holdScore = async () => {
+        let active = this.state.activePlayer;
+        await this.setState((state) => {
+            let copyScores = state.scores
+            copyScores[active] += state.currentScore
+            state.currentScore = 0
+        });
+        if(this.state.scores[active] >= this.state.pointToAchive){
+            let viVe = this.state.activePlayer === 1? 0: 1;
+            let winner = "W I N N E R";
+           this.elemntSelectros().playerCard[viVe].classList.add("inactive")
+           this.elemntSelectros().playerCard[active].classList.add("winner")
+            this.setState((state) => {
+                state.title[active] = winner
+                state.diceValue = [0, 0]
+            })
+            this.disableBtn()
+        }
+        await this.swichPlayer()
+        await this.setActivePlayer()
     }
     
     componentDidMount(){
-        let active = 0
-        this.setState({
-            style: [this.defaultStyle+active, this.defaultStyle+"2 inactive"],
-           activePlayer: active
-        });
+        this.setActivePlayer()
     }
     
     componentDidUpdate(){
+        localStorage.setItem("state", JSON.stringify(this.state))
         if(this.state.diceValue[0] === 6 &&this.state.diceValue[1] === 6){
             this.disableBtn()
             setTimeout(() => {
@@ -116,13 +109,16 @@ class App extends React.Component{
         }
     }
 
-    setInputvalue = (value) => this.setState({pointToAchive: value})
+    setInputvalue = (value) => {
+        this.newGame()
+        this.setState({pointToAchive: value})
+    }
 
     render(){
         return(
             <Container>
                 <PlayerCard 
-                    player={this.state.style[0]}
+                    player="play_card player_1"
                     player_n= {this.state.title[0]}
                     score={this.state.scores[0]}
                     currentScore = {this.state.activePlayer===0?this.state.currentScore:0}
@@ -135,10 +131,11 @@ class App extends React.Component{
                  setDiceOne={this.state.diceValue[0]}
                  setDiceTwo={this.state.diceValue[1]}
                  handleInputValue={(value) => this.setInputvalue(value)}
+                 placeHolder = {this.state.pointToAchive}
                  />
 
                 <PlayerCard
-                    player={this.state.style[1]}
+                    player="play_card player_2"
                     player_n = {this.state.title[1]}
                     score={this.state.scores[1]}
                     currentScore = {this.state.activePlayer===1?this.state.currentScore:0}
