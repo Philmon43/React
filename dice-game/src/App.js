@@ -2,7 +2,7 @@ import React from "react"
 import Container from "./Components/Container/Container";
 import PlayerCard from "./Components/playercard/PlayerCard";
 import Console from "./Components/Console/Console";
-import RandomNumber from "./Hooks/RandomNumber"
+import RandomNumber from "./Hooks/RandomNumber";
 
 class App extends React.Component{
     state = JSON.parse(localStorage.getItem("state")) || {
@@ -24,11 +24,11 @@ class App extends React.Component{
     syncLocalSorage = () => localStorage.setItem("state", JSON.stringify(this.state))
 
     setActivePlayer = async () => {
-        let viVe = this.state.activePlayer === 1? 0: 1;
-        await this.elemntSelectros().playerCard[viVe].classList.add("inactive")
+        let viceVersa = this.state.activePlayer === 1? 0: 1;
+        await this.elemntSelectros().playerCard[viceVersa].classList.add("inactive")
         await this.elemntSelectros().playerCard[this.state.activePlayer].classList.remove("inactive")
     }
-    
+
     swichPlayer =  () => this.setState({activePlayer: this.state.activePlayer===0?1:0})
 
     disableBtn = () => {
@@ -45,6 +45,11 @@ class App extends React.Component{
                 el.classList.remove("disable")
             }
         });
+    }
+
+    setInputvalue = (value) => {
+        this.newGame()
+        this.setState({pointToAchive: value})
     }
 
     newGame = () => {
@@ -79,10 +84,8 @@ class App extends React.Component{
             state.currentScore = 0
         });
         if(this.state.scores[active] >= this.state.pointToAchive){
-            let viVe = this.state.activePlayer === 1? 0: 1;
             let winner = "W I N N E R";
-           this.elemntSelectros().playerCard[viVe].classList.add("inactive")
-           this.elemntSelectros().playerCard[active].classList.add("winner")
+            this.elemntSelectros().playerCard[active].classList.add("winner")
             this.setState((state) => {
                 state.title[active] = winner
                 state.diceValue = [0, 0]
@@ -94,6 +97,7 @@ class App extends React.Component{
     }
     
     componentDidMount(){
+        this.newGame()
         this.setActivePlayer()
     }
     
@@ -103,17 +107,12 @@ class App extends React.Component{
             this.disableBtn()
             setTimeout(() => {
                 this.setState({diceValue: [0, 0], currentScore: 0})
-                this.setActivePlayer()
                 this.enableBtn()
+                this.swichPlayer()
+                this.setActivePlayer()
             }, 2000)
         }
     }
-
-    setInputvalue = (value) => {
-        this.newGame()
-        this.setState({pointToAchive: value})
-    }
-
     render(){
         return(
             <Container>
