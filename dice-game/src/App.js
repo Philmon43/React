@@ -67,10 +67,10 @@ class App extends React.Component{
         this.enableBtn()
     }
 
-    rollDice = () => {
+    rollDice = async () => {
         let radomDiceOne = RandomNumber();
         let radomDiceTwo = RandomNumber();
-        this.setState({
+        await this.setState({
             diceValue: [radomDiceOne, radomDiceTwo], 
             currentScore: this.state.currentScore+(radomDiceOne+radomDiceTwo)
         })
