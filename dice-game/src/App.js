@@ -34,6 +34,7 @@ class App extends React.Component{
     disableBtn = () => {
         this.elemntSelectros().button.forEach((el, i) => {
             if(i > 0){
+                el.parentElement.classList.add("disable")
                 el.classList.add("disable")
             }
         });
@@ -42,6 +43,7 @@ class App extends React.Component{
     enableBtn = () => {
         this.elemntSelectros().button.forEach((el, i) => {
             if(i > 0){
+                el.parentElement.classList.remove("disable")
                 el.classList.remove("disable")
             }
         });
@@ -103,7 +105,7 @@ class App extends React.Component{
     
     componentDidUpdate(){
         localStorage.setItem("state", JSON.stringify(this.state))
-        if(this.state.currentScore === 12){
+        if(this.state.diceValue[0]+this.state.diceValue[1] === 12){
             this.disableBtn()
             setTimeout(() => {
                 this.setState({diceValue: [0, 0], currentScore: 0})

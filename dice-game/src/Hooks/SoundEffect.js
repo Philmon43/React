@@ -1,7 +1,6 @@
 import useSound from 'use-sound';
 import Disabled from "./sounds/disable-sound.mp3";
 import pop from "./sounds/pop.mp3";
-import glug from "./sounds/glug-a.mp3";
 import popUpOn from "./sounds/pop-up-on.mp3";
 import sewitch from "./sounds/switch-on.mp3";
 
@@ -10,7 +9,7 @@ const DisabledSound = props => {
     return <div onClick={play}>{props.children}</div>;
 };
 
-const Sewitch = props => {
+const Switch = props => {
     const [play] = useSound(sewitch);
     return <div onClick={play}>{props.children}</div>;
 }
@@ -25,4 +24,4 @@ const Pop = props => {
     return <div onClick={play}>{props.children}</div>;
 }
 
-export {DisabledSound, Sewitch, PopUpOn, Pop}
+export {DisabledSound, Switch, PopUpOn, Pop}

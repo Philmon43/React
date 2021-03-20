@@ -2,7 +2,7 @@ import "./console.css";
 import Button from "../button/Button";
 import Dice from "../dice/Dice";
 import Input from "../Input/Input";
-import {Sewitch, PopUpOn, Pop} from "../../Hooks/SoundEffect"
+import {Switch, PopUpOn, Pop} from "../../Hooks/SoundEffect"
 
 const Console = props => {
    const onNewGame = () => props.onNewButtonClick();
@@ -32,12 +32,12 @@ const Console = props => {
                />
           </PopUpOn>
           
-           <Sewitch>
+           <Switch>
                <Button
                type="📥 &nbsp; HOLD"
                handleClickEvent={onHoldScore}
                />
-           </Sewitch>
+           </Switch>
           <Input sendInput={(value) =>  onInputValue(value)} placeHolder={props.placeHolder}/>
        </div>
     )
