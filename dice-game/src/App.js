@@ -103,7 +103,7 @@ class App extends React.Component{
     
     componentDidUpdate(){
         localStorage.setItem("state", JSON.stringify(this.state))
-        if(this.state.diceValue[0] === 6 &&this.state.diceValue[1] === 6){
+        if(this.state.currentScore === 12){
             this.disableBtn()
             setTimeout(() => {
                 this.setState({diceValue: [0, 0], currentScore: 0})
