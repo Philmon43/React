@@ -99,7 +99,7 @@ class App extends React.Component{
     }
     
     componentDidMount(){
-        this.newGame()
+        this.setState({diceValue: [0, 0]})
         this.setActivePlayer()
     }
     
