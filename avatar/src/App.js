@@ -6,7 +6,7 @@ import Card from "./component/Card";
 import Axios from "./component/Axios";
 
 class App extends React.Component{
-    state = {avatar: []}
+    state = {avatar: [], filtered: []}
 
     fetchtenAvatar = async () => {
         const res = []
@@ -16,15 +16,28 @@ class App extends React.Component{
        this.setState({avatar: res})
     }
 
-    componentDidMount(){
-        this.fetchtenAvatar()
+    setInstaFilter = (val) => {
+        const filtered =  this.state.avatar.filter((avtr) => {
+            return avtr.name.first.toLowerCase().split("").splice(0, val.length).join("") === val
+        });
+        this.setState({filtered: filtered})
+    }
+    sendDataToCard = () => {
+       if(this.state.filtered.length > 0){
+           return this.state.filtered
+       }else{
+           return this.state.avatar
+       }
+    }
+    async componentDidMount(){
+        await this.fetchtenAvatar()
     }
     render(){
         return(
             <div>
-                <div className="search"><Input /> <Button type="🔍  &nbsp; Search"/></div>
+                <div className="search"><Input instaFilter={(val) => this.setInstaFilter(val)}/> <Button type="🔍  &nbsp; Search"/></div>
                 <div className="cards">
-                    <Card card={this.state.avatar}/>
+                    <Card card={this.sendDataToCard()}/>
                 </div>
             </div>
         )

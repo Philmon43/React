@@ -2,12 +2,14 @@ import React from "react"
 import  "./input.css"
 class Input extends React.Component{
     state = {val: ""}
+
     handleSubmit = (e) =>{
         e.preventDefault()
     }
+
     handleChange = async (e) => {
-        await this.props.sendInput(this.state.val)
         this.setState({val: e.target.value})
+        await this.props.instaFilter(e.target.value)
     }
 
     render(){
