@@ -5,9 +5,6 @@ import Input from "../Input/Input";
 import {Switch, PopUpOn, Pop} from "../../Hooks/SoundEffect"
 
 const Console = props => {
-   const onNewGame = () => props.onNewButtonClick();
-   const onRollDice = () => props.onRollButtonClick();
-   const onHoldScore = () => props.onHoldScoreClick();
    const onDcieOne = () => props.setDiceOne;
    const onDcieTwo = () => props.setDiceTwo;
    const onInputValue = (value) => props.handleInputValue(value)
@@ -16,7 +13,7 @@ const Console = props => {
          <Pop>
                <Button
                type="🔄 &nbsp; NEW GAME"
-               handleClickEvent={onNewGame}
+               handleClickEvent={props.onNewButtonClick}
                />
           </Pop>
           <Dice
@@ -28,14 +25,14 @@ const Console = props => {
           <PopUpOn>
                <Button
                type="🎲 &nbsp; ROLL DICE"
-               handleClickEvent={onRollDice}
+               handleClickEvent={props.onRollButtonClick}
                />
           </PopUpOn>
           
            <Switch>
                <Button
                type="📥 &nbsp; HOLD"
-               handleClickEvent={onHoldScore}
+               handleClickEvent={props.onHoldScoreClick}
                />
            </Switch>
           <Input sendInput={(value) =>  onInputValue(value)} placeHolder={props.placeHolder}/>
