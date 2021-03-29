@@ -1,0 +1,11 @@
+.text{
+    width: 400px;
+    margin: 0 auto;
+}
+
+.link{
+    color: blue;
+    text-decoration: underline;
+    margin-left: 5px;
+    cursor: pointer;
+}
