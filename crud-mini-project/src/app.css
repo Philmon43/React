@@ -1,0 +1,43 @@
+.table_head, .content{
+    background: #333;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    color: white;
+    padding: 10px;
+}
+.content:nth-child(even){
+    background: rgba(51, 51, 51, 0.5);
+}
+
+.content:nth-child(odd){
+    background: rgba(51, 51, 51, 0.7);
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(51, 51, 51, 0.5);
+}
+.box{
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    background: ghostwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+input, button{
+    width: 200px;
+    margin: 10px 0 ;
+    padding: 10px;
+}
+.hidden { display:none; }
